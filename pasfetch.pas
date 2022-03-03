@@ -6,7 +6,7 @@ Crt, uPasfetchUtils;
 
 var 
   // A record to store system information
-  Info 		 : packed record
+    Info 		 : packed record
     OS    	 : packed array [1..40] of char;
     HostNAme : packed array [1..40] of char;
     Kernel   : packed array [1..40] of char;
