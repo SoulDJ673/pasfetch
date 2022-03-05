@@ -108,10 +108,10 @@ begin
       strSRclaimable := Trim(ExtractString(strTmp, 'SReclaimable:', 'kB'));
 
       // Calc Mem Total
-      intTotalMem := StrToFloat(strMemTotal) + StrToFloat(strShmem);
+      intTotalMem := StrToFloat(strMemTotal);
 
       // Calc Mem Usage
-      intMemUsage := (intTotalMem - StrToFloat(strMemFree) -
+      intMemUsage := ((intTotalMem + StrToFloat(strShmem)) - StrToFloat(strMemFree) -
         StrToFloat(strBuffers) - StrToFloat(strCached) - StrToFloat(strSRclaimable));
     finally
       slMemInfo.Free;
@@ -122,8 +122,7 @@ begin
       writeln('File handling error occurred. Details: ', E.Message);
   end;
 
-  Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024 * 1024),
-    (intTotalMem - StrToFloat(strShmem)) / (1024 * 1024)]);
+  Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024 * 1024), intTotalMem / (1024 * 1024)]);
 end;
 
 
@@ -194,4 +193,3 @@ begin
 end;
 
 end.
-
