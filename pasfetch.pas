@@ -1,32 +1,34 @@
-program pasfetch;
-{$mode objfpc}{$H+}
+program pasfetch(input, output, stdErr);
 
-uses 
-Crt, uPasfetchUtils;
+{$MODE OBJFPC}{$H+}{$J-}
 
-var 
+uses
+  uPasfetchUtils,
+  uAnsiCrt;
+  
+  
+var
   // A record to store system information
-    Info 		 : packed record
-    OS    	 : packed array [1..40] of char;
-    HostNAme : packed array [1..40] of char;
-    Kernel   : packed array [1..40] of char;
-    Uptime   : packed array [1..20] of char;
-    Memory   : packed array [1..20] of char;
+  Info: packed record
+    OS: packed array [1..40] of char;
+    HostNAme: packed array [1..40] of char;
+    Kernel: packed array [1..40] of char;
+    Uptime: packed array [1..20] of char;
+    Memory: packed array [1..20] of char;
 
-  end;
+    end;
 
 
 begin
-
   // Get system information and place it in record
   with info do
-    begin
-      OS   	   := GetOS;
-      HostName := GetHostName;
-      Kernel   := GetKernel;
-      Uptime   := GetUptime;
-      Memory   := GetRamUsage;
-    end;
+  begin
+    OS := GetOS;
+    HostName := GetHostName;
+    Kernel := GetKernel;
+    Uptime := GetUptime;
+    Memory := GetRamUsage;
+  end;
 
   //Clear the screen
   ClrScr;
@@ -37,37 +39,35 @@ begin
 
   // Info Names
   TextColor(Yellow);
-  HighVideo;
   GoToXY(20, 2);
-  write(' OS:');
+  Write(' OS:');
   GoToXY(20, 3);
-  write(' HOST:');
+  Write(' HOST:');
   GoToXY(20, 4);
-  write(' KERNEL:');
+  Write(' KERNEL:');
   GoToXY(20, 5);
-  write(' UPTIME:');
+  Write(' UPTIME:');
   GoToXY(20, 6);
-  write(' MEMORY:');
-  NormVideo;
+  Write(' MEMORY:');
+  //NormVideo;
 
 
   // Info
-  LowVideo;
   TextColor(White);
   GoToXY(30, 2);
   writeln(info.OS);
 
   GoToXY(30, 3);
-  write(info.HostName);
+  Write(info.HostName);
 
   GoToXY(30, 4);
-  write(info.Kernel);
+  Write(info.Kernel);
 
   GoToXY(30, 5);
-  write(info.Uptime);
+  Write(info.Uptime);
 
   GoToXY(30, 6);
-  write(info.Memory);
+  Write(info.Memory);
 
   // Color blocks
   GoToXY(32, 7);
@@ -96,7 +96,8 @@ begin
 
   // end
   TextColor(White);
-  GoToXY(1,11);
+  GoToXY(1, 11);
   writeLn('');
 
 end.
+
