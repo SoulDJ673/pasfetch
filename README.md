@@ -11,21 +11,28 @@ You can compile Pasfetch with the free an open source "Free Pascal Compiler" jus
 
 ### Compile
 use fpc to compile with these optimized option
-```pascal
-fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
+```bash
+$ fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
 ```
 or run the included bash script to compile and cleanup
 ```bash
-./cleanup.sh
+$ ./cleanup.sh
 ```
 
 ### Install
  Copy the compiled binary to your path folder e.g /$HOME/bin 
+ 
+ then make it executable
+ ```bash
+ $ chmod +x pasfetch
+ ```
 
 
 ## Usage
-either call the program by using pasfetch in a shell or add to your .bashrc 
+Either call the program by using pasfetch in a shell or add to your .bashrc 
 
-
+```bash
+$ pasfetch
+```
 
 
