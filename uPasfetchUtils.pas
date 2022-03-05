@@ -1,24 +1,25 @@
 unit uPasfetchUtils;
-{$mode objfpc}{$H+}
+
+{$MODE OBJFPC}{$H+}{$J-}
 
 interface
 
-uses 
-Classes, Sysutils, uPasfetchAscii;
+uses
+  Classes, SysUtils, uPasfetchAscii;
 
 // Public functions for Pasfetch
-Procedure WriteOSLogo(strOS: String);
-function GetHostName(): String;
-function GetRamUsage(): String;
-function GetUptime(): String;
-function GetOS(): String;
-function GetKernel(): String;
+procedure WriteOSLogo(strOS: string);
+function GetHostName(): string;
+function GetRamUsage(): string;
+function GetUptime(): string;
+function GetOS(): string;
+function GetKernel(): string;
 
 
 implementation
 
 
-Procedure WriteOSLogo(strOS: String);
+procedure WriteOSLogo(strOS: string);
 begin
   if pos('Pop', strOS) <> 0 then
     // Write the popos logo
@@ -30,30 +31,31 @@ end;
 
 
 // Function to Extract a string between 2 strings
-function ExtractString(StrSource, StrFirst, StrLast: String): String;
+function ExtractString(StrSource, StrFirst, StrLast: string): string;
 begin
-  result := Copy(StrSource,Pos(StrFirst,StrSource)+Length(StrFirst),Pos(StrLast,StrSource)-(Pos(StrFirst,StrSource)+Length(StrFirst)));
+  Result := Copy(StrSource, Pos(StrFirst, StrSource) + Length(StrFirst),
+    Pos(StrLast, StrSource) - (Pos(StrFirst, StrSource) + Length(StrFirst)));
 end;
 
 
 // Function to remove all instants of a char from string
-function StripChars(StrSource, StrRemove: String): String;
-var 
-  i: Integer;
+function StripChars(StrSource, StrRemove: string): string;
+var
+  i: integer;
 begin
   Result := StrSource;
   repeat
     i := pos(StrRemove, Result);
     if i > 0 then
-      delete(Result, i, 1);
+      Delete(Result, i, 1);
   until pos(StrRemove, Result) = 0;
 end;
 
 
 //Get hostname
-function GetHostName(): String;
-var 
-  strHostName: String;
+function GetHostName(): string;
+var
+  strHostName: string;
   txtHostName: TextFile;
 begin
   AssignFile(txtHostName, '/proc/sys/kernel/hostname');
@@ -63,15 +65,16 @@ begin
   finally
     CloseFile(txtHostName);
   end;
- Result := strHostName;
+  Result := strHostName;
 end;
 
 
 // Get Memory and usage
-function GetRamUsage(): String;
-var 
-  strTmp, strMemTotal, strMemFree, strShmem, strBuffers, strCached, strSRclaimable : String;
-  intMemUsage, intTotalMem : Single;
+function GetRamUsage(): string;
+var
+  strTmp, strMemTotal, strMemFree, strShmem, strBuffers, strCached,
+  strSRclaimable: string;
+  intMemUsage, intTotalMem: single;
   slMemInfo: TStringList;
 begin
   Result := 'Error';
@@ -108,34 +111,37 @@ begin
       intTotalMem := StrToFloat(strMemTotal) + StrToFloat(strShmem);
 
       // Calc Mem Usage
-      intMemUsage := (intTotalMem - StrToFloat(strMemFree) - StrToFloat(strBuffers) - StrToFloat(strCached) - StrToFloat(strSRclaimable));
-    Finally
-      slMemInfo.free;
-	end;
+      intMemUsage := (intTotalMem - StrToFloat(strMemFree) -
+        StrToFloat(strBuffers) - StrToFloat(strCached) - StrToFloat(strSRclaimable));
+    finally
+      slMemInfo.Free;
+    end;
 
   except
-	on E: EInOutError do
-        writeln('File handling error occurred. Details: ', E.Message);
+    on E: EInOutError do
+      writeln('File handling error occurred. Details: ', E.Message);
   end;
 
- Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024*1024), (intTotalMem - StrToFloat(strShmem)) / (1024*1024)]);
+  Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024 * 1024),
+    (intTotalMem - StrToFloat(strShmem)) / (1024 * 1024)]);
 end;
 
 
 // Get uptime using GetTickCount64
-function GetUptime(): String;
-var 
-  aDatetime : TDateTime;
+function GetUptime(): string;
+var
+  aDatetime: TDateTime;
 begin
-  aDatetime := (GetTickCount64  / SecsPerDay / MSecsPerSec);
-  Result := Format('%d days, %s', [Trunc(aDatetime), FormatDateTime('hh:nn:ss', Frac(aDatetime))]) ;
+  aDatetime := (GetTickCount64 / SecsPerDay / MSecsPerSec);
+  Result := Format('%d days, %s', [Trunc(aDatetime),
+    FormatDateTime('hh:nn:ss', Frac(aDatetime))]);
 end;
 
 
 // Get Kernel
-function GetKernel(): String;
-var 
-  strOSType, strOSRelease: String;
+function GetKernel(): string;
+var
+  strOSType, strOSRelease: string;
   txtOStype, txtOSRelease: TextFile;
 begin
   AssignFile(txtOStype, '/proc/sys/kernel/ostype');
@@ -151,40 +157,41 @@ begin
     CloseFile(txtOStype);
     CloseFile(txtOSRelease);
   end;
- Result := strOSType + '  ' + strOSRelease;
+  Result := strOSType + '  ' + strOSRelease;
 end;
 
 
 // Get OS
-function GetOS(): String;
-var 
-  strOS, strTmp: String;
+function GetOS(): string;
+var
+  strOS, strTmp: string;
   slOS: TStringList;
-  i: Integer;
+  i: integer;
 begin
   Result := 'Error';
   slOS := TStringList.Create;
   try
     slOS.LoadFromFile('/etc/os-release');
     try
-      for i:= 0 to pred(slOS.Count) do
+      for i := 0 to pred(slOS.Count) do
+      begin
+        strTmp := slOS.Strings[i];
+        if pos('_NAME="', slOS.Strings[i]) > 6 then
         begin
-          strTmp := slOS.Strings[i];
-          if pos('_NAME="', slOS.Strings[i]) > 6 then
-            begin
-              strOS := strTmp;
-              delete(strOS,1, 13);
-              strOS := StripChars(strOS, '"');
-            end;
+          strOS := strTmp;
+          Delete(strOS, 1, 13);
+          strOS := StripChars(strOS, '"');
         end;
+      end;
     finally
-      slOS.free;
-	end;
-	except
-	 on E: EInOutError do
-        writeln('File handling error occurred. Details: ', E.Message);
+      slOS.Free;
+    end;
+  except
+    on E: EInOutError do
+      writeln('File handling error occurred. Details: ', E.Message);
   end;
- Result := strOS;
+  Result := strOS;
 end;
 
 end.
+
