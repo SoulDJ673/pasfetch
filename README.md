@@ -12,6 +12,8 @@ You can compile Pasfetch with the free an open source "Free Pascal Compiler" jus
 ### Compile
 ```pascal
 fpc -Xs -S2 pasfetch.pas
+or 
+./cleanup.sh
 ```
 ### Install
  Copy the compiled binary to your path folder e.g /$HOME/bin 
