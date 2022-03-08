@@ -16,8 +16,9 @@ $ fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
 ```
 or run the included bash script to compile and cleanup
 ```bash
-$ ./cleanup.sh
+$ ./cleanndup.sh
 ```
+if you get an error on "ld" not found, install "binutils" package for your distribution
 
 ### Install
  Copy the compiled binary to your path folder e.g /$HOME/bin 
