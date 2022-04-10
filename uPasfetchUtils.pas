@@ -111,8 +111,8 @@ begin
       intTotalMem := StrToFloat(strMemTotal);
 
       // Calc Mem Usage
-      intMemUsage := ((intTotalMem + StrToFloat(strShmem)) - StrToFloat(strMemFree) -
-        StrToFloat(strBuffers) - StrToFloat(strCached) - StrToFloat(strSRclaimable));
+      intMemUsage := (intTotalMem - StrToFloat(strMemFree) - StrToFloat(strBuffers) - 
+        StrToFloat(strCached) - StrToFloat(strSRclaimable));
     finally
       slMemInfo.Free;
     end;
