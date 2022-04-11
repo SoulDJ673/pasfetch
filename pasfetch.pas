@@ -18,6 +18,7 @@ var
 
     end;
 
+i, iBoxPos: Integer;
 
 begin
   // Get system information and place it in record
@@ -69,35 +70,19 @@ begin
   GoToXY(30, 6);
   Write(info.Memory);
 
-  // Color blocks
-  GoToXY(32, 7);
-  TextColor(LightBlue);
-  writeLn('▄');
-
-  GoToXY(34, 7);
-  TextColor(LightCyan);
-  writeLn('▄');
-
-  GoToXY(36, 7);
-  TextColor(LightRed);
-  writeLn('▄');
-
-  GoToXY(38, 7);
-  TextColor(LightMagenta);
-  writeLn('▄');
-
-  GoToXY(40, 7);
-  TextColor(LightGray);
-  writeLn('▄');
-
-  GoToXY(42, 7);
-  TextColor(Cyan);
-  writeLn('▄');
+  // Color blocks 
+  iBoxPos:= 32;
+  
+  for i:= 1 to 6 do
+	  begin
+		  GotoXY(iBoxPos,7);
+		  Textcolor(90+i);
+		  writeLn('▄');
+		  inc(iBoxPos,2);
+	  end;
 
   // end
-  TextColor(White);
-  GoToXY(1, 11);
-  writeLn('');
+  Reset;
+  GoToXY(1, 10);
 
 end.
-
