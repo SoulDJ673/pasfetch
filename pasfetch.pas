@@ -74,12 +74,12 @@ begin
   iBoxPos:= 32;
   
   for i:= 1 to 6 do
-	  begin
-		  GotoXY(iBoxPos,7);
-		  Textcolor(90+i);
-		  writeLn('▄');
-		  inc(iBoxPos,2);
-	  end;
+	begin
+		GotoXY(iBoxPos,7);
+		Textcolor(90+i);
+		writeLn('▄');
+		inc(iBoxPos,2);
+	end;
 
   // end
   Reset;
