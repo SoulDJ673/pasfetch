@@ -21,21 +21,14 @@ implementation
 
 procedure WriteOSLogo(strOS: string);
 begin
-  if pos('Artix', strOS) <> 0 then
-    // Write the artix logo
-    WriteArtix
-  else
-  if pos('Arch', strOS) <> 0 then
-    // Write the arch logo
-    WriteArch
-  else
-  if pos('Pop', strOS) <> 0 then
-    // Write the popos logo
-    WritePopOS
-  else
-    WriteOther;
+    case lowercase(strOS) of
+        'artix' : WriteArtix;
+        'arch' : WriteArch;
+        'pop' : WritePopOS;
+    else
+        WriteOther;
 end;
-
+end;
 
 // Function to Extract a string between 2 strings
 function ExtractString(StrSource, StrFirst, StrLast: string): string;
