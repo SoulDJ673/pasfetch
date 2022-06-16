@@ -8,7 +8,9 @@ uses
   uAnsiCrt;
 
 procedure WriteArch;
+procedure WriteArtix;
 procedure WritePopOS;
+procedure WriteOther;
 
 implementation
 
@@ -28,6 +30,21 @@ begin
 
 end;
 
+// Artix Linux Logo
+procedure WriteArtix;
+begin
+
+  TextColor(LightBlue);
+  writeLn('      /\      ');
+  writeLn('     /  \     ');
+  writeLn('    /`''.,\    ');
+  writeLn('   /     '',   ');
+  writeLn('  /      ,`\  ');
+  writeLn(' /   ,.''`.  \ ');
+  writeLn('/.,''`     `''.\');
+
+end;
+
 // PopOS Logo
 procedure WritePopOS;
 begin
@@ -41,6 +58,22 @@ begin
   writeLn('     \ \    _         ');
   writeLn('    __\_\__(_)_       ');
   writeLn('   (___________)      ');
+
+end;
+
+// Unknown Logo
+procedure WriteOther;
+begin
+
+  TextColor(White);
+  writeLn('               ');
+  writeLn('  o    |~~~|   ');
+  writeLn(' /\\_  _|   |  ');
+  writeLn(' \\__`[_    |  ');
+  writeLn(' [] \\,/|___|  ');
+  writeLn('               ');
+  writeLn('-David S. Issel');
+  writeLn('               ');
 
 end;
 

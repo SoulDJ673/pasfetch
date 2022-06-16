@@ -41,39 +41,38 @@ begin
   // Info Names
   TextColor(Yellow);
   GoToXY(20, 2);
-  Write(' OS:');
+  Write(''); // OS
   GoToXY(20, 3);
-  Write(' HOST:');
+  Write(''); // HOST
   GoToXY(20, 4);
-  Write(' KERNEL:');
+  Write(''); // KERNEL
   GoToXY(20, 5);
-  Write(' UPTIME:');
+  Write(''); // UPTIME
   GoToXY(20, 6);
-  Write(' MEMORY:');
+  Write(''); // MEMORY
   //NormVideo;
-
 
   // Info
   TextColor(White);
-  GoToXY(30, 2);
+  GoToXY(22, 2);
   writeln(info.OS);
 
-  GoToXY(30, 3);
+  GoToXY(22, 3);
   Write(info.HostName);
 
-  GoToXY(30, 4);
+  GoToXY(22, 4);
   Write(info.Kernel);
 
-  GoToXY(30, 5);
+  GoToXY(22, 5);
   Write(info.Uptime);
 
-  GoToXY(30, 6);
+  GoToXY(22, 6);
   Write(info.Memory);
 
   // Color blocks 
-  iBoxPos:= 32;
+  iBoxPos:= 20;
   
-  for i:= 1 to 6 do
+  for i:= 1 to 12 do
 	begin
 		GotoXY(iBoxPos,7);
 		Textcolor(90+i);

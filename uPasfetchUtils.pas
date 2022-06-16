@@ -21,12 +21,19 @@ implementation
 
 procedure WriteOSLogo(strOS: string);
 begin
+  if pos('Artix', strOS) <> 0 then
+    // Write the artix logo
+    WriteArtix
+  else
+  if pos('Arch', strOS) <> 0 then
+    // Write the arch logo
+    WriteArch
+  else
   if pos('Pop', strOS) <> 0 then
     // Write the popos logo
     WritePopOS
   else
-    // Write the arch logo
-    WriteArch;
+    WriteOther;
 end;
 
 
