@@ -20,14 +20,20 @@ implementation
 
 
 procedure WriteOSLogo(strOS: string);
+var
+    s: integer;
 begin
+    // Truncate OS name to first word
+    s := pos(' ', strOS);
+    SetLength(strOS, s-1);
+
     case lowercase(strOS) of
         'artix' : WriteArtix;
         'arch' : WriteArch;
         'pop' : WritePopOS;
     else
         WriteOther;
-end;
+    end;
 end;
 
 // Function to Extract a string between 2 strings
