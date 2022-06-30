@@ -7,10 +7,10 @@ My personal build of [Drunken Alcoholic](https://gitlab.com/DrunkenAlcoholic)'s 
 ![alt text](img/souldj673-pasfetch-scrot.png "Pasfetch")
 
 ## Installation
-You can compile Pasfetch with the free an open source "Free Pascal Compiler" just search your distro's packages for "fpc" and install, then to compile you do the following:
+You can compile Pasfetch with the free and open source "Free Pascal Compiler". Just search your distro's packages for "fpc" and install, then compile by doing the following:
 
 ### Compile
-use fpc to compile with these optimized option
+Use fpc to compile with optimizations
 ```bash
 $ fpc -O3 -CpCOREAVX2 -OpCOREAVX2 -CfAVX2 -Xs pasfetch.pas
 ```
@@ -18,22 +18,26 @@ or run the included shell script to compile and cleanup
 ```bash
 $ ./cleanup.sh
 ```
-if you get an error on "ld" not found, install "binutils" package for your distribution
+If you get an error on "ld" not found, install the "binutils" package for your distribution
 
 ### Install
- Copy the compiled binary to your path folder e.g "/$HOME/.local/bin"
+ Copy the compiled binary to a folder in your $PATH e.g "$HOME/.local/bin"
  
  then make it executable
  ```bash
  $ chmod +x pasfetch
  ```
 
-
 ## Usage
-Either call the program by using pasfetch in a shell or add to your .bashrc, .kshrc, .zshrc, etc.
+Either call the program by using pasfetch in a shell or add to your shell's rc file.
 
 ```bash
 $ pasfetch
 ```
 
+## Why
+I came across this by accident one day, and it happened to be significantly faster than what I was using previously, especially over 1000 runs.  Using it as intended, the difference was negligible.  I still switched though because I prefer to get free performance where possible, and I like to toy around with old hardware, and so this difference could be much more substantial there.
 
+## Todo
+- [ ] Use built-in Crt implementation
+- [ ] Allow running without clearing screen
