@@ -5,7 +5,7 @@ unit uPasfetchAscii;
 interface
 
 uses
-  Crt;
+  uAnsiCrt;
 
 procedure WriteArch;
 procedure WriteArtix;
