@@ -39,5 +39,5 @@ $ pasfetch
 I came across this by accident one day, and it happened to be significantly faster than what I was using previously, especially over 1000 runs.  Using it as intended, the difference was negligible.  I still switched though because I prefer to get free performance where possible, and I like to toy around with old hardware, and so this difference could be much more substantial there.
 
 ## Todo
-- [ ] Use built-in Crt implementation
+- [X] Use built-in Crt implementation
 - [ ] Allow running without clearing screen
