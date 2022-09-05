@@ -1,5 +1,4 @@
 unit uPasfetchUtils;
-
 {$MODE OBJFPC}{$H+}{$J-}
 
 interface
@@ -149,20 +148,27 @@ var
 	strOSType, strOSRelease: string;
 	txtOStype, txtOSRelease: TextFile;
 begin
-	AssignFile(txtOStype, '/proc/sys/kernel/ostype');
-	AssignFile(txtOSRelease, '/proc/sys/kernel/osrelease');
 	try
-		Reset(txtOStype);
-		Reset(txtOSRelease);
+		AssignFile(txtOStype, '/proc/sys/kernel/ostype');
+		AssignFile(txtOSRelease, '/proc/sys/kernel/osrelease');
+		try
+			Reset(txtOStype);
+			Reset(txtOSRelease);
 
-		ReadLn(txtOStype, strOSType);
-		ReadLn(txtOSRelease, strOSRelease);
+			ReadLn(txtOStype, strOSType);
+			ReadLn(txtOSRelease, strOSRelease);
 
-	finally
-		CloseFile(txtOStype);
-		CloseFile(txtOSRelease);
+		finally
+			CloseFile(txtOStype);
+			CloseFile(txtOSRelease);
+		end;
+		Result := strOSType + '  ' + strOSRelease;
+	except
+		on E: EInOutError do begin
+			writeln('File handling error occurred. Details: ', E.Message);
+			Result := 'Unknown';
+		end;
 	end;
-	Result := strOSType + '  ' + strOSRelease;
 end;
 
 
