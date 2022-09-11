@@ -40,4 +40,7 @@ I came across this by accident one day, and it happened to be significantly fast
 
 ## Todo
 - ~~[X] Use built-in Crt implementation~~ This proved to be disadvantageous for performance.
+- [ ] Support for more Linux distros
+- [ ] Support for non-Linux Unix/Unix-like systems
+	* Currently being worked on
 - [ ] Allow running without clearing screen
