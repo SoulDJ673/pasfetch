@@ -63,14 +63,20 @@ var
 	strHostName: string;
 	txtHostName: TextFile;
 begin
-	AssignFile(txtHostName, '/proc/sys/kernel/hostname');
 	try
-		Reset(txtHostName);
-		ReadLn(txtHostName, strHostName);
-	finally
-		CloseFile(txtHostName);
+		AssignFile(txtHostName, '/proc/sys/kernel/hostname');
+		try
+			Reset(txtHostName);
+			ReadLn(txtHostName, strHostName);
+		finally
+			CloseFile(txtHostName);
+			Result := strHostName;
+		end;
+	except
+		on E: EInOutError do begin
+			Result := 'Unknown';
+		end;
 	end;
-	Result := strHostName;
 end;
 
 
@@ -120,14 +126,15 @@ begin
 			StrToFloat(strCached) - StrToFloat(strSRclaimable));
 		finally
 			slMemInfo.Free;
+			Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024 * 1024), intTotalMem / (1024 * 1024)]);
 		end;
 
 	except
 		on E: EInOutError do
-			writeln('File handling error occurred. Details: ', E.Message);
+			Result := 'Unknown';
+		on E: EStringListError do
+			Result := 'Unknown';
 	end;
-
-	Result := Format('%.2fGB / %.2fGB', [intMemUsage / (1024 * 1024), intTotalMem / (1024 * 1024)]);
 end;
 
 
@@ -200,6 +207,7 @@ begin
 	except
 		on E: EInOutError do begin
 			writeln('File handling error occurred. Details: ', E.Message);
+			strOS := 'Unknown';
 		end;
 		on E: EFileNotFoundException do begin
 			strOS := 'Unknown';
