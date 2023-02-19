@@ -134,6 +134,8 @@ begin
 			Result := 'Unknown';
 		on E: EStringListError do
 			Result := 'Unknown';
+		on E: EFOpenError do
+			Result := 'Unknown';
 	end;
 end;
 
