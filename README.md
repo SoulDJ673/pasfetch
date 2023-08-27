@@ -48,5 +48,5 @@ I came across this by accident one day, and it happened to be significantly fast
 # Archived.
 ## I've been busy with work, and I also don't use this anymore.
 For more active/maintained versions/alternatives, check out the following:
-- Drunken Alcoholic's Pasfetch - (Gitlab)[https://gitlab.com/DrunkenAlcoholic/pasfetch/]  (Github)[https://github.com/DrunkenAlcoholic/Pasfetch]
-- FelixEcker's (Pasfetch)[https://github.com/FelixEcker/pasfetch] (No relation)
+- Drunken Alcoholic's Pasfetch - [Gitlab](https://gitlab.com/DrunkenAlcoholic/pasfetch/)  [Github](https://github.com/DrunkenAlcoholic/Pasfetch)
+- FelixEcker's [Pasfetch](https://github.com/FelixEcker/pasfetch) (No relation)
