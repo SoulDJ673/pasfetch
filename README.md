@@ -38,9 +38,15 @@ $ pasfetch
 ## Why
 I came across this by accident one day, and it happened to be significantly faster than what I was using previously, especially over 1000 runs.  Using it as intended, the difference was negligible.  I still switched though because I prefer to get free performance where possible, and I like to toy around with old hardware, and so this difference could be much more substantial there.
 
-## Todo
-- ~~[X] Use built-in Crt implementation~~ This proved to be disadvantageous for performance.
-- [ ] Support for more Linux distros
-- [ ] Support for non-Linux Unix/Unix-like systems
-	* Currently being worked on
-- [ ] Allow running without clearing screen
+~~## Todo~~
+~~- ~~[X] Use built-in Crt implementation~~ This proved to be disadvantageous for performance.~~
+~~- [ ] Support for more Linux distros~~
+~~- [ ] Support for non-Linux Unix/Unix-like systems~~
+	~~* Currently being worked on~~
+~~- [ ] Allow running without clearing screen~~
+
+# Archived.
+## I've been busy with work, and I also don't use this anymore.
+For more active/maintained versions/alternatives, check out the following:
+- Drunken Alcoholic's Pasfetch - (Gitlab)[https://gitlab.com/DrunkenAlcoholic/pasfetch/]  (Github)[https://github.com/DrunkenAlcoholic/Pasfetch]
+- FelixEcker's (Pasfetch)[https://github.com/FelixEcker/pasfetch] (No relation)
